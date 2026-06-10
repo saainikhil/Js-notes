@@ -31,12 +31,12 @@
 // Examples
 
 // Example 1: basic string and length
-let name = "John Doe"; // store a user name
+let name = "Madhu"; // store a user name
 console.log(name); // prints the name
 console.log(name.length); // prints number of characters
 // Output
-// John Doe
-// 8
+// Madhu
+// 5
 // Explanation: length counts letters and the space.
 
 // Example 2: changing case and trimming
