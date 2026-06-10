@@ -142,8 +142,12 @@ console.log(players); //[ 'jadeja', 'samson', 'dube', 'gaikwad', 'nkr' ]
 // last give how many elements you want to add.
 // so the index becomes [ 'jadeja', 'samson', 'dube', 'gaikwad', 'nkr' ]
 
+// Map() method
+// Map method creates a new array by calling a provided function on every element in the calling array.
+// It doesn't change the original array
+// It always returns a new array and used when you want to transform each element.
 
-
+//syntax: arrayName.map(function(currentValue, index, array), thisArg)
 
 
 
