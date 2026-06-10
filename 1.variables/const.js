@@ -2,7 +2,7 @@
 // const - Constant variables (block scoped)
 //
 // Definition
-// `const` declares a block-scoped variable whose value cannot be reassigned.
+// `const` declares a block-scoped variable whose value cannot be reassigned and redeclared.
 // It is used for values that should not change after they are set.
 //
 // Syntax
@@ -21,117 +21,48 @@
 // - Cannot be reassigned after declaration
 // - Must be initialized at the time of declaration
 // - For objects and arrays, the binding is constant but object contents can change
-//
-// Scope Explanation
-// 1. What is Scope? Definition
-// Scope tells us where a variable or constant can be used in code.
-//
-// 2. Why Scope is Important
-// Good scope rules prevent accidental access or modification and make code safer.
-//
-// 3. Real-life analogy
-// Think of scope like labeled boxes: a constant inside a box is only available when
-// you open that box.
-//
-// 4. Global Scope Definition
-// A global constant is declared outside functions and blocks and is available
-// everywhere in the program.
-//
-// 5. How the variable behaves when declared globally
-// A `const` declared globally can be read from any function or block but cannot
-// be reassigned.
-//
-// 6. Example
-const GLOBAL_CONST = "I am global";
-function readGlobalConst() {
-	console.log(GLOBAL_CONST);
-}
-readGlobalConst();
-// Output
-// I am global
-// 7. Explanation
-// The function can access `GLOBAL_CONST` because it was declared globally.
-//
-// 8. Function Scope Definition
-// A constant declared inside a function exists only inside that function.
-//
-// 9. Explain whether the variable can be accessed outside the function
-// A `const` declared inside a function cannot be accessed from outside the function.
-//
-// 10. Example
+
+
+// Example Usage
+
+const valueofpi = 3.14159; // A constant value for pi
+console.log(valueofpi); // Output: 3.14159
+
+//once you assign a value to a const variable, you cannot reassign it
+ valueofpi = 3.14; // This will throw an error: TypeError: Assignment to constant variable.
+
+ //redeclaration of a const variable is also not allowed
+const valueofpi = 3.1416; // This will throw an error: SyntaxError: Identifier 'valueofpi' has already been declared
+
+//once you take variable in const immediately you should assign value to it otherwise it will throw an error
+const studentname; // This will throw an error: SyntaxError: Missing initializer in const declaration
+
+// However, for objects and arrays declared with const, you can modify their contents
+const myArray = [1, 2, 3];
+myArray.push(4); // This is allowed, myArray is still the same reference
+console.log(myArray); // Output: [1, 2, 3, 4]
+
+//block scope example
+if (true) {
+	const blockScopedVariable = 'I am block scoped';
+	console.log(blockScopedVariable); // Output: I am block scoped
+}	
+console.log(blockScopedVariable); // This will throw an error: ReferenceError: blockScopedVariable is not defined
+
+
+
 function demoConstFunction() {
 	const insideConst = "inside function";
 	console.log(insideConst);
 }
-demoConstFunction();
+demoConstFunction(); // Output: inside function
 // console.log(insideConst); // ReferenceError if uncommented
-// Output
-// inside function
-// 11. Explanation
+
+// Explanation
 // `insideConst` exists only inside `demoConstFunction` and cannot be used outside.
-//
-// 12. Block Scope Definition
-// `const` is block-scoped: a constant declared inside { } is visible only inside
-// that block.
-//
-// 13. Explain whether the variable can be accessed outside the block
-// A `const` declared inside an if/for block cannot be accessed outside that block.
-//
-// 14. Example
-if (true) {
-	const blockConst = "inside block";
-	console.log(blockConst);
-}
-// console.log(blockConst); // ReferenceError if uncommented
-// Output
-// inside block
-// 15. Explanation
-// The `blockConst` is not available outside the if-block because `const` enforces block scope.
-//
-// Reassignment
-// Not allowed. Trying to assign a new value to a `const` variable throws an error.
-//
-// Redeclaration
-// You cannot redeclare the same `const` name in the same block.
-//
-// Hoisting Behavior
-// `const` is hoisted but not usable before declaration (temporal dead zone).
-//
-// Comparison with Other Variable Types
-// - `let`: can be reassigned.
-// - `var`: function-scoped and can be redeclared.
-// Use `const` for values that must not change.
-//
-// Examples
 
-// Example 1: const basic
-const TAX_RATE = 0.1; // declare a constant for tax rate
-console.log("Tax rate:", TAX_RATE);
-// Output
-// Tax rate: 0.1
 
-// Example 2: cannot reassign
-const id = 123;
-console.log(id); // 123
-// id = 456; // TypeError if uncommented: Assignment to constant variable.
-
-// Example 3: const with object (binding is constant, properties can change)
-const product = { name: "Shirt", price: 500 };
-console.log(product.name, product.price); // show initial values
-// Output
-// Shirt 500
-product.price = 450; // modify a property - allowed
-console.log(product.price);
-// Output
-// 450
-// Explanation: the `product` reference cannot be reassigned, but its internal properties can change.
-
-// Real-world example: application config
-const APP_NAME = "ShopEasy"; // app name should not change during runtime
-console.log("App:", APP_NAME);
-// Output
-// App: ShopEasy
-
-// Notes for beginners:
-// - Prefer `const` by default. Use `let` when you need to change a variable.
-// - Avoid `var` for new code.
+//const in objects and arrays
+const myObject = { name: "karthik", age: 25 };
+myObject.name = "karthik kumar"; // This is allowed, we are modifying the property of the object, not reassigning the variable
+console.log(myObject); // Output: { name: "karthik kumar", age: 25 }
