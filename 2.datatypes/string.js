@@ -39,6 +39,17 @@ console.log(name.length); // prints number of characters
 // 5
 // Explanation: length counts letters and the space.
 
+// Strings can hold numbers as well, but they are treated as text, not for calculations.
+let numericString = "12345";
+console.log(numericString); // output: 12345
+console.log(typeof numericString); // output: string
+// Explanation: even though it looks like a number, it's a string because of the quotes. And can't be used for math operations directly without conversion.
+
+let a = 1;
+let b = "2";
+console.log(a + b); // output: 12
+// Explanation: adding a number and a string results in string concatenation, not arithmetic addition.
+
 // Example 2: changing case and trimming
 let email = "  user@example.com  "; // user input with extra spaces
 console.log("Before:", email);
