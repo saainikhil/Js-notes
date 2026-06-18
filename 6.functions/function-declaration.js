@@ -26,6 +26,7 @@ console.log(add(2, 3)); // Output: 5
 // Return Statement
 // Definition
 // The return keyword sends a value back from a function.
+// We can reuse the returned value in outside the function.
 // Example
 function square(num) {
     return num * num;
