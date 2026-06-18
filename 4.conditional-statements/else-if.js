@@ -28,9 +28,24 @@ if (condition1) {
 // 5.Remaining blocks skipped
 // 6.If none true: else executes
 
+// Condition 1
+//      |
+//   True ----> Execute Block 1
+//      |
+//    False
+//      |
+// Condition 2
+//      |
+//   True ----> Execute Block 2
+//      |
+//    False
+//      |
+//    else
+//      |
+// Execute else block
+
 //basic example:
 let marks = 79;
-
 if (marks >= 90){
     console.log('grade A');
 } else if(marks >= 80) {
