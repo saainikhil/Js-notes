@@ -112,6 +112,7 @@ console.log(result);  //[ 7, 10, 18 ]
 //syntax: arrayName.splice(start, deleteCount, item1, item2)
 
 //remove element
+// syntax: arrayName.splice(start, deleteCount)
 // Parameters
 // Parameter    = Meaning
 // start	    = Index where changes begin
@@ -126,6 +127,7 @@ console.log(cricketers);  //[ 'sachin', 'rohit', 'hardhik' ]
 // final array becomes ['sachin', 'rohit', 'hardhik']
 
 // Add element
+// syntax: arrayName.splice(start, deleteCount, item1, item2)
 let cart = ['pencil','book','box'];
 cart.splice(2,0, 'bottle');
 console.log(cart); // [ 'pencil', 'book', 'bottle', 'box' ]
@@ -134,6 +136,7 @@ console.log(cart); // [ 'pencil', 'book', 'bottle', 'box' ]
 //so index becomes [ 'pencil', 'book', 'bottle', 'box' ]
 
 //Replace element
+// syntax: arrayName.splice(start, deleteCount, item1, item2)
 let players = ['hardhik','samson','dube','gaikwad','nkr'];
 players.splice(0,1, 'jadeja');
 console.log(players); //[ 'jadeja', 'samson', 'dube', 'gaikwad', 'nkr' ]
