@@ -1,264 +1,173 @@
-// What are Objects in JavaScript?
-// Objects are collections of key-value pairs used to group related data and behavior.
-// Why do we use Objects?
-// They model real-world entities, reduce separate variables, and encapsulate related logic.
-// Where we use Objects in real projects?
-// Configs, API responses, models, component props, state objects, and more.
+// Objects:
+// what are objects?
+// Objects are non-primitive data types used to store data in key-value pairs.
+// objects are mutable, meaning you can change their properties and values after they are created.
+// Objects can be created using object literals, constructors, or the Object.create() method.
+// objects can store any type of data, including other objects, arrays, functions, and primitive data types.
 
-// Syntax
-let exampleObject = { key: 'value' };
 
-// Simple example
-{
-    let person = {
-        firstName: 'Saai',
-        lastName: 'Nikhil',
-        age: 25,
-        isStudent: true,
-        courses: ['Java', 'Python', 'C++'],
-        sayHello: function () {
-            console.log('Hello, my name is ' + this.firstName + ' ' + this.lastName);
-        }
-    };
-    // Output
-    person.sayHello(); // Hello, my name is Saai Nikhil
-    // Explanation: `person` groups related properties and a method; `this` refers to the object.
+// objects syntax:
+
+// empty object:
+const emptyObject = {};
+// output: {}
+
+// literal syntax:
+const person = {
+    name: "sathvik",
+    age: 22,
+    isStudent: true,
+    college: "XYZ University"
 }
+console.log(person);
+// output: { name: 'sathvik', age: 22, isStudent: true, college: 'XYZ University' }
 
-// Objects vs Primitive Data Types
-// Objects are reference types (stored and passed by reference); primitives are copied by value.
-{
-    let a = { v: 1 };
-    let b = a;
-    b.v = 2;
-    console.log(a.v); // 2 (reference behavior)
-}
+// to access the properties of an object, you can use dot notation or bracket notation:
+// dot notation:
+console.log(person.name); // output: sathvik
+console.log(person.age); // output: 22
 
-// Creating Objects
-// Syntax
-let o1 = { name: 'x' };
-let o2 = new Object();
-o2.name = 'y';
+// bracket notation:
+console.log(person["isStudent"]); // output: true
 
-// Accessing Object Properties
-// Dot Notation
-{
-    let obj = { name: 'Arya' };
-    console.log(obj.name); // Arya
-}
+// to add a new property to an object, you can use dot notation or bracket notation:
+// dot notation
+person.gender = "male";
+console.log(person.gender);
+ //output: male
 
-// Bracket Notation
-{
-    let obj = { 'first-name': 'Tyrion' };
-    console.log(obj['first-name']); // Tyrion
-}
+// bracket notation
+person["hobby"] = "reading";
+console.log(person)
+// output: { name: 'sathvik', age: 22, isStudent: true, college: 'XYZ University', gender: 'male', hobby: 'reading' }
 
-// Adding Properties
-{
-    let u = {};
-    u.age = 30;
-    console.log(u.age); // 30
-}
+// to delete a property from an object, you can use the delete operator:
+delete person.age;
+// output: { name: 'sathvik', isStudent: true, college: 'XYZ University', gender: 'male', hobby: 'reading' }
 
-// Updating Properties
-{
-    let u = { age: 20 };
-    u.age = 21;
-    console.log(u.age); // 21
-}
+// to update an existing property of an object
+// as we already discussed, Objects are mutable, so existing property values can be changed.
+person.college = "ABC University";
+console.log(person.college); // output: ABC University
 
-// Deleting Properties
-{
-    let u = { name: 'Jon', mark: 90 };
-    delete u.mark;
-    console.log(u.mark); // undefined
-}
+//accessing properties using variables
+let key = "name";
+console.log(person[[key]]); //output: sathvik
 
-// Nested Objects
-{
-    let data = { user: { name: 'Sam', address: { city: 'Winterfell' } } };
-    console.log(data.user.address.city); // Winterfell
-}
+// to check an object length 
+// object do not length property like arrays, but you can get the number of properties in an object using the Object.keys() method:
+const personLength = Object.keys(person).length;    // output: 5
 
-// Objects inside Arrays
-{
-    let arr = [ { id:1 }, { id:2 } ];
-    console.log(arr[1].id); // 2
-}
 
-// Arrays inside Objects
-{
-    let obj = { tags: ['js','node'] };
-    console.log(obj.tags[0]); // js
-}
+// looping through object properties
+ for (let key in person) {
+    console.log(key + ": " + person[key]);
+ }
+//output: 
+//  name: sathvik
+// isStudent: true
+// college: ABC University
+// gender: male
+// hobby: reading
 
-// Object Methods
-{
-    let calculator = {
-        add(a, b) { return a + b; }
-    };
-    console.log(calculator.add(2,3)); // 5
-}
 
-// `this` keyword in Objects
-{
-    let obj = {
-        name: 'Bran',
-        show() { console.log(this.name); }
-    };
-    obj.show(); // Bran
-}
-
-// Object.keys(), Object.values(), Object.entries()
-{
-    const profile = { name: 'S', age: 28 };
-    console.log(Object.keys(profile)); // [ 'name', 'age' ]
-    console.log(Object.values(profile)); // [ 'S', 28 ]
-    console.log(Object.entries(profile)); // [ ['name','S'], ['age',28] ]
-}
-
-// Object.freeze() and Object.seal()
-{
-    const a = { x:1 };
-    Object.freeze(a);
-    a.x = 2; // no effect
-    console.log(a.x); // 1
-
-    const b = { y:1 };
-    Object.seal(b);
-    b.y = 2; // allowed
-    // b.z = 3; // not allowed: cannot add new prop
-    console.log(b.y); // 2
-}
-
-// Destructuring Objects
-{
-    const user = { name: 'D', age: 40 };
-    const { name, age } = user;
-    console.log(name, age); // D 40
-}
-
-// Spread Operator with Objects
-{
-    const a = { x:1 };
-    const b = { ...a, y:2 };
-    console.log(b); // { x:1, y:2 }
-}
-
-// Object.assign()
-{
-    const target = { a:1 };
-    const source = { b:2 };
-    Object.assign(target, source);
-    console.log(target); // { a:1, b:2 }
-}
-
-// Optional Chaining
-{
-    const profile = { name: 'A' };
-    console.log(profile?.address?.city); // undefined (no error)
-}
-
-// for...in loop
-{
-    const o = { a:1, b:2 };
-    for (let k in o) {
-        console.log(k + ':' + o[k]);
+// this Keyword in Objects
+// this refers to the current object.
+const person = {
+    name: "sathvik",
+    introduce: function () {
+        return "My name is " + this.name;
     }
-}
+};
+console.log(person.introduce());
+// Output: My name is sathvik
 
-// Object Cloning: Shallow Copy vs Deep Copy
-{
-    const original = { a: 1, nested: { x: 1 } };
-    const shallow = { ...original };
-    shallow.nested.x = 2;
-    console.log(original.nested.x); // 2 (shallow copy shares nested ref)
+// to freeze an object Object.freeze()
+// Prevents adding, deleting, or modifying properties.
+const person = {
+    name: "sathvik"
+};
+Object.freeze(person);
+person.name = "nikhil";
+console.log(person);
+// Output  { name: 'sathvik' }
 
-    // Deep copy (simple JSON approach)
-    const deep = JSON.parse(JSON.stringify(original));
-    deep.nested.x = 5;
-    console.log(original.nested.x); // still 2
-}
 
-// JSON.stringify() and JSON.parse()
-{
-    const obj = { name: 'R', age: 33 };
-    const s = JSON.stringify(obj);
-    const parsed = JSON.parse(s);
-    console.log(s, parsed.name); // string and 'R'
-}
 
-// Constructor Function
-{
-    const Person = function(name, age) {
-        this.name = name;
-        this.age = age;
-    };
-    const p = new Person('Ctor', 20);
-    console.log(p.name); // Ctor
-}
 
-// Classes and Objects
-{
-    class PersonClass {
-        constructor(name) { this.name = name; }
-        greet() { console.log('Hi ' + this.name); }
+
+
+// to check if a property exists in an object, you can use the in operator:
+console.log("name" in person); // output: true
+console.log("age" in person); // output: false
+
+// to get the keys of an object, you can use the Object.keys() method:
+console.log(Object.keys(person)); // output: [ 'name', 'isStudent', 'college', 'gender', 'hobby' ]
+
+// to get the values of an object, you can use the Object.values() method:
+console.log(Object.values(person)); // output: [ 'sathvik', true, 'XYZ University', 'male', 'reading' ]
+
+// to get the entries of an object, you can use the Object.entries() method:
+console.log(Object.entries(person)); // output: [ [ 'name', 'sathvik' ], [ 'isStudent', true ], [ 'college', 'XYZ University    '], [ ' gender', 'male' ], [ 'hobby', 'reading' ] ]
+
+// Objects can store other objects, arrays, functions, and primitive values.
+// objects can store objects:
+const student = {
+    name: "sathvik",
+    age: 22,
+    grade: "A",
+    address: {
+        district: "anantapur",
+        state: "andhra pradesh",
     }
-    const pc = new PersonClass('Classy');
-    pc.greet(); // Hi Classy
-}
+};
 
-// Factory Functions
-{
-    const createUser = function(name) { return { name, say() { console.log(name); } }; };
-    const u = createUser('F');
-    u.say(); // F
-}
+// to access the properties of a nested object, you can use dot notation or bracket notation:
+// dot notation:
+console.log(student.address); // output: { district: 'anantapur', state: 'andhra pradesh' }
+console.log(student.address.district); // output: anantapur
+// bracket notation:
+console.log(student["address.state"]); // output: undefined
+// address.state is treated as a single property name
+// Since such property does not exist, output is undefined
+console.log(student["address"]["state"]); // output: andhra pradesh
 
-// Prototypes & Prototype Inheritance
-{
-    const Animal = function(name) { this.name = name; };
-    Animal.prototype.speak = function() { console.log(this.name + ' speaks'); };
-    const Dog = function(name) { Animal.call(this, name); };
-    Dog.prototype = Object.create(Animal.prototype);
-    Dog.prototype.constructor = Dog;
-    const d = new Dog('Doggo');
-    d.speak(); // Doggo speaks
-}
+// objects can store arrays:
+const course = {
+    name: "JavaScript",
+    duration: "3 months",
+    topics: ["variables", "functions", "objects", "arrays"]
+};
 
-// Encapsulation & OOP basics (simple patterns)
-{
-    // Use closures or Symbols/private fields for encapsulation in real projects.
-    class Counter {
-        constructor() { this._count = 0; }
-        inc() { this._count++; }
-        get() { return this._count; }
+// to access the elements of an array stored in an object, you can use dot notation or bracket notation:
+// dot notation:
+console.log(course) // output: { name: 'JavaScript', duration: '3 months', topics: [ 'variables', 'functions', 'objects', 'arrays' ] }
+console.log(course.topics); // output: [ 'variables', 'functions', 'objects', 'arrays' ]
+console.log(course.topics[0]); // output: variables
+// bracket notation:
+console.log(course["topics"]); // output: [ 'variables', 'functions', 'objects', 'arrays' ]
+console.log(course["topics"][0]); // output: variables
+
+// objects can store functions:
+const calculator = {
+    add: function (a, b) {
+        return a + b;
+    },
+    subtract: function (a, b) {
+        return a - b;
+    },
+    multiply: function (a, b) {
+        return a * b;
+    },
+    divide: function (a, b) {
+        return a / b;
     }
-    const c = new Counter();
-    c.inc();
-    console.log(c.get()); // 1
-}
-
-// Real-world Object examples
-// API response, user model, config object, component props are common usages.
-
-// Interview Questions on Objects (examples)
-// Q: Difference between shallow and deep copy?
-// Q: How does `this` behave in arrow vs regular functions?
-
-// Common Mistakes Beginners Make
-// - Mutating shared objects unintentionally
-// - Confusing `==` and `===` when comparing object properties
-// - Expecting dot notation to work with keys containing dashes (use bracket notation)
-
-// Best Practices for Objects
-// - Prefer `const` for object bindings
-// - Use immutable patterns where beneficial
-// - Keep objects focused (single responsibility)
-// - Use `Object.freeze()` when you need immutability guarantees
-
-// End of comprehensive Objects notes (keeps original learning style and examples)
-
-
-
+};
+// to call a function stored in an object, you can use dot notation or bracket notation:
+// dot notation:
+console.log(calculator.add(2, 3)); // output: 5
+console.log(calculator.subtract(5, 2)); // output: 3
+// bracket notation:
+console.log(calculator["multiply"](2, 3)); // output: 6
+console.log(calculator["divide"](6, 2)); // output: 3
 
